@@ -9,21 +9,33 @@
 		"lint": "next lint",
 		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
 		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+		"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+		"db:generate": "drizzle-kit generate",
+		"db:push": "wrangler d1 execute travel-db --file=./drizzle/*.sql",
+		"db:push:local": "wrangler d1 execute travel-db --local --file=./drizzle/*.sql",
+		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
+		"@auth/core": "^0.38.0",
+		"@auth/d1-adapter": "^1.8.0",
+		"dotenv": "^16.5.0",
+		"drizzle-orm": "^0.41.0",
+		"hono": "^4.7.6",
 		"next": "15.2.5",
+		"next-auth": "^4.24.6",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {
+		"@cloudflare/next-on-pages": "^1.13.12",
 		"@cloudflare/workers-types": "^4.20250413.0",
-		"@opennextjs/cloudflare": "~1.0.0-beta.0 || ^1.0.0",
 		"@tailwindcss/postcss": "^4",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"drizzle-kit": "^0.30.6",
 		"tailwindcss": "^4",
+		"tsx": "^4.19.3",
 		"typescript": "^5",
 		"wrangler": "^4.10.0"
 	}
