@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
+/* 旅行アプリのカスタムテーマ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 0.625rem;
+  --background: #F5F7FA;
+  --foreground: #333333;
+  
+  /* メインカラー */
+  --primary: #3A8DFF;
+  --primary-light: #F2F8FF;
+  --primary-dark: #2A6DBF;
+  
+  /* サブカラー */
+  --secondary: #17C3B2;
+  --secondary-light: #E1FFFC;
+  
+  /* 機能別カラー */
+  --travel-blue: #4FC3F7;
+  --travel-green: #27AE60;
+  --travel-accent: #FF5A5F;
+  
+  /* テキストカラー */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-tertiary: #888888;
+  
+  /* ボーダー */
+  --border: #EEEEEE;
+  --input: #DDD;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ダークモード設定 (オプション) */
+.dark {
+  --background: #1A1A1A;
+  --foreground: #FFFFFF;
+  
+  --primary: #4C9AFF;
+  --primary-light: #253858;
+  --primary-dark: #0747A6;
+  
+  --secondary: #1DDECB;
+  --secondary-light: #052E2A;
+  
+  --travel-blue: #29B6F6;
+  --travel-green: #2ECC71;
+  --travel-accent: #FF8589;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #DDDDDD;
+  --text-tertiary: #AAAAAA;
+  
+  --border: #444444;
+  --input: #555555;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    /* border-border クラスを削除し、具体的なborderの設定に変更 */
+    border-color: var(--border);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
 }

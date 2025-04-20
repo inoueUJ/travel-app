@@ -4,7 +4,7 @@ import { UserMenu } from "@/components/auth/user-menu";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, LogIn, LogOut } from "lucide-react";
 import Link from "next/link";
-import { auth } from "./auth";
+import { auth } from "../auth";
 
 export default async function Home() {
 	const session = await auth();
