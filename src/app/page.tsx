@@ -1,57 +1,60 @@
-import { SignInButton } from "@/components/auth/signin-button";
-import { SignOutButton } from "@/components/auth/signout-button";
-import { UserMenu } from "@/components/auth/user-menu";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, LogIn, LogOut } from "lucide-react";
-import Link from "next/link";
+import { BottomNavigation } from "@/components/layout/bottom-navigation";
+import { Header } from "@/components/layout/header";
+import { Protected } from "@/components/layout/protected";
+import { NewTripButton } from "@/components/trip/new-trip-button";
+import { TripCard } from "@/components/trip/trip-card";
 import { auth } from "./auth";
+
+// モックデータ（実際にはデータベースから取得）
+const mockTrips = [
+	{
+		id: "trip1",
+		title: "トルコへの旅",
+		startDate: "2025年5月10日",
+		endDate: "2025年5月20日",
+		nextEvent: {
+			title: "イスタンブール観光",
+			time: "10:00",
+			timeFromNow: "74日後",
+		},
+		color: "blue" as const,
+	},
+	{
+		id: "trip2",
+		title: "沖縄ビーチリゾート",
+		startDate: "2025年7月20日",
+		endDate: "2025年7月25日",
+		nextEvent: {
+			title: "パスポート確認",
+			time: "",
+			timeFromNow: "残り 120日",
+		},
+		color: "teal" as const,
+	},
+];
 
 export default async function Home() {
 	const session = await auth();
+
 	return (
-		<div className="flex flex-1 flex-col items-center justify-center">
-			<div className="container flex flex-col items-center justify-center gap-2">
-				<h1 className="text-2xl font-bold">Home</h1>
-				<p className="text-sm text-muted-foreground">
-					Start modifying this page to get started.
-				</p>
-				<div className="flex gap-2">
-					<Link
-						prefetch={false}
-						href="https://github.com/caru-ini/next-authjs-template"
-						passHref
-						target="_blank"
-					>
-						<Button variant="outline" className="gap-2">
-							Check the repository
-							<ArrowRight size={16} />
-						</Button>
-					</Link>
-					{session ? (
-						<SignOutButton className="gap-2">
-							<LogOut size={16} />
-							Sign Out
-						</SignOutButton>
-					) : (
-						<SignInButton className="gap-2">
-							<LogIn size={16} />
-							Sign In
-						</SignInButton>
-					)}
+		<Protected>
+			<div className="flex flex-col min-h-svh pb-16">
+				<Header title="旅のしおり" />
+
+				<div className="flex-1 px-4 py-4 space-y-4">
+					{/* 旅行カード一覧 */}
+					<div className="space-y-4">
+						{mockTrips.map((trip) => (
+							<TripCard key={trip.id} {...trip} />
+						))}
+					</div>
+
+					{/* 新規作成ボタン */}
+					<NewTripButton />
 				</div>
-				<div className="flex max-w-xl flex-col">
-					<p className="max-w-sm rounded-t-md bg-secondary/50 p-2 font-bold">
-						Session
-					</p>
-					<pre className="min-w-[300px] overflow-x-auto rounded-md rounded-t-none bg-secondary p-4 text-sm">
-						{session ? JSON.stringify(session, null, 2) : "No session"}
-					</pre>
-				</div>
-				<div className="flex flex-col items-center justify-center gap-2 rounded-md bg-secondary/50 p-4">
-					<p className="font-bold">User Menu</p>
-					<UserMenu />
-				</div>
+
+				<BottomNavigation />
 			</div>
-		</div>
+		</Protected>
 	);
 }
