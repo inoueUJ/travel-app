@@ -14,14 +14,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth(async () => {
 				clientId: env.GOOGLE_CLIENT_ID,
 				clientSecret: env.GOOGLE_CLIENT_SECRET,
 			}),
-			// 他の認証プロバイダーを追加可能
 		],
 
 		// 明示的にシークレットを設定
 		secret: env.AUTH_SECRET,
 
 		// セッション設定
-		session: { strategy: "jwt" }, // Cloudflare環境では"jwt"が推奨
 
 		// カスタムページ設定
 		pages: {

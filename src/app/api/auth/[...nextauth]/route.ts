@@ -1,13 +1,4 @@
-import { Hono } from "hono";
-import { handle } from "hono/vercel";
- 
+// src/app/api/auth/[...nextauth]/route.ts
+import { handlers } from "@/app/auth";
 
-const app = new Hono().basePath("/api");
- 
-app.get("/hello", (c) => {
-  return c.json({ message: "Hello World!" });
-});
- 
-export const GET = handle(app);
-export const POST = handle(app);
-
+export const { GET, POST } = handlers;

@@ -7,15 +7,30 @@
 	"name": "travel-app",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2025-03-01",
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
+	"compatibility_flags": ["nodejs_compat"],
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".open-next/assets"
 	},
 	"observability": {
 		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "travel-db",
+			"database_id": "d7524802-bc58-477c-bb98-c16f2ed9fc79",
+			"migrations_dir": "src/app/drizzle/migrations"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "TRAVEL_BUCKET",
+			"bucket_name": "travel-app-bucket"
+		}
+	],
+	"vars": {
+		"AUTH_SECRET": "5kahmFF3x3riIp1OoaJBGO3gqmRoo++3R5E2luQYxeA="
 	}
 	/**
 	 * Smart Placement
